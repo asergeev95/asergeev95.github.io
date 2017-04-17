@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<style>
+		
+		.task{
+
+			border: 1px solid black;
+			padding: 5px;
+			margin-bottom: 10px;
+			width: 680px;
+		}
+
+		.answer{
+			background-color: #000;
+			margin-top: 10px;
+		}
+
+		.answer:hover{
+			background-color: #fff;
+			font-size: 20px;
+		}
+
+	</style>
+</head>
+<body>
+
+<div class="wrapper">
+	
+<div class="left">
+	
+<div class="task"><div align="justify" width="100%" id="body3243" class="pbody"><p class="left_margin">Определите, что будет напечатано в результате работы следующего фрагмента программы:</p><p>&nbsp;</p><p><b>var k, s: integer;</b></p><p><b>begin</b></p><p><b> &nbsp; &nbsp; s:=0;</b></p><p><b> &nbsp; &nbsp; k:=0;</b></p><p><b> &nbsp; &nbsp; while s &lt; 80 do begin</b></p><p><b> &nbsp; &nbsp; &nbsp; &nbsp; s:=s+2*k;</b></p><p><b> &nbsp; &nbsp; &nbsp; &nbsp; k:=k+4;</b></p><p><b> &nbsp; &nbsp; end;</b></p><p><b> &nbsp; &nbsp; write(s);</b></p><p><b>end.</b></p><p></p><div style="width:20px;height:5px;display:inline"></div></div>
+	<div class="answer">Цикл while выполняется до тех пор, пока истинно условие s < 80, т. е. переменная k определяет, сколько раз выполнится цикл.
+ 
+Аккуратно выпишем все s и k. Oтвет 80</div>
+</div>
+<div class="task">
+Определите, что будет на­пе­ча­та­но в ре­зуль­та­те вы­пол­не­ния программы
+<div class="source_code lang_c"><pre class="sh_c sh_sourceCode"><span class="sh_preproc">#include</span> <span class="sh_string">&lt;stdio.h&gt;</span>
+<span class="sh_type">void</span> <span class="sh_function">main</span><span class="sh_symbol">()</span>
+<span class="sh_cbracket">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_type">int</span> n<span class="sh_symbol">,</span> s<span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;n <span class="sh_symbol">=</span> <span class="sh_number">1</span><span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;s <span class="sh_symbol">=</span> <span class="sh_number">0</span><span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">while</span> <span class="sh_symbol">(</span>n <span class="sh_symbol">&lt;=</span> <span class="sh_number">100</span><span class="sh_symbol">)</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_cbracket">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s <span class="sh_symbol">=</span> s <span class="sh_symbol">+</span> <span class="sh_number">30</span><span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n <span class="sh_symbol">=</span> n <span class="sh_symbol">*</span> <span class="sh_number">2</span><span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_cbracket">}</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_function">printf</span><span class="sh_symbol">(</span><span class="sh_string">"%d"</span><span class="sh_symbol">,</span> s<span class="sh_symbol">);</span>
+<span class="sh_cbracket">}</span></pre></div>
+	<div class="answer">Цикл while вы­пол­ня­ет­ся до тех пор, пока ис­тин­но усло­вие n ≤ 100, т. е. пе­ре­мен­ная n определяет, сколь­ко раз вы­пол­нит­ся цикл. По­сколь­ку из­на­чаль­но n = 1, цикл вы­пол­нит­ся 7 раз, следовательно, s = 30 · 7 = 210.
+ 
+Ответ: 210.
+</div>
+</div>
+<div class="task">
+Определите, что будет на­пе­ча­та­но в ре­зуль­та­те вы­пол­не­ния про­грам­мы
+<div class="source_code lang_c"><pre class="sh_c sh_sourceCode"><span class="sh_preproc">#include</span> <span class="sh_string">&lt;stdio.h&gt;</span>
+<span class="sh_type">void</span> <span class="sh_function">main</span><span class="sh_symbol">()</span>
+<span class="sh_cbracket">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_type">int</span> n<span class="sh_symbol">,</span> s<span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;n <span class="sh_symbol">=</span> <span class="sh_number">1</span><span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;s <span class="sh_symbol">=</span> <span class="sh_number">6</span><span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">while</span> <span class="sh_symbol">(</span>s <span class="sh_symbol">&lt;=</span> <span class="sh_number">365</span><span class="sh_symbol">)</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_cbracket">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s <span class="sh_symbol">=</span> s <span class="sh_symbol">+</span> <span class="sh_number">36</span><span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n <span class="sh_symbol">=</span> n <span class="sh_symbol">*</span> <span class="sh_number">2</span><span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_cbracket">}</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_function">printf</span><span class="sh_symbol">(</span><span class="sh_string">"%d"</span><span class="sh_symbol">,</span>  n<span class="sh_symbol">);</span>
+<span class="sh_cbracket">}</span></pre></div>
+	<div class="answer">Цикл while вы­пол­ня­ет­ся до тех пор, пока ис­тин­но усло­вие s <= 365, т. е. пе­ре­мен­ная s определяет, сколь­ко раз вы­пол­нит­ся цикл. Ответ: 1024.</div>
+</div>
+<div class="task">Определите, что будет на­пе­ча­та­но в ре­зуль­та­те вы­пол­не­ния про­грам­мы
+<div class="source_code lang_c"><pre class="sh_c sh_sourceCode"><span class="sh_preproc">#include</span> <span class="sh_string">&lt;stdio.h&gt;</span>
+<span class="sh_type">void</span> <span class="sh_function">main</span><span class="sh_symbol">()</span>
+<span class="sh_cbracket">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_type">int</span> n<span class="sh_symbol">,</span> s<span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;n <span class="sh_symbol">=</span> <span class="sh_number">30</span><span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;s <span class="sh_symbol">=</span> <span class="sh_number">1</span><span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">while</span> <span class="sh_symbol">(</span>s <span class="sh_symbol">&lt;</span> <span class="sh_number">500</span><span class="sh_symbol">)</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_cbracket">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s <span class="sh_symbol">=</span> s <span class="sh_symbol">*</span> <span class="sh_number">2</span> <span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n <span class="sh_symbol">=</span> n <span class="sh_symbol">+</span> <span class="sh_number">10</span><span class="sh_symbol">;</span> 
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_cbracket">}</span>  
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_function">printf</span><span class="sh_symbol">(</span><span class="sh_string">"%d"</span><span class="sh_symbol">,</span> n<span class="sh_symbol">);</span>
+<span class="sh_cbracket">}</span></pre></div>
+	<div class="answer">Цикл while вы­пол­ня­ет­ся до тех пор, пока ис­тин­но усло­вие s < 500, т. е. пе­ре­мен­ная s определяет, сколь­ко раз вы­пол­нит­ся цикл.Поскольку 256<500<(512 = 2<sup>9</sup>) следовательно, цикл вы­пол­нит­ся 9 раз. На 9-м шаге s ста­нет рав­ной 512 и усло­вие s < 500 ока­жет­ся не выполненным, цикл прервется. Ответ: 120</div>
+</div>
+<div class="task">
+Определите, что будет на­пе­ча­та­но в ре­зуль­та­те выполнения про­грам­мы
+<div class="source_code lang_c"><pre class="sh_c sh_sourceCode"><span class="sh_preproc">#include</span> <span class="sh_string">&lt;stdio.h&gt;</span> 
+<span class="sh_type">void</span> <span class="sh_function">main</span><span class="sh_symbol">()</span>
+<span class="sh_cbracket">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_type">int</span> n<span class="sh_symbol">,</span> s<span class="sh_symbol">;</span> 
+&nbsp;&nbsp;&nbsp;&nbsp;n <span class="sh_symbol">=</span> <span class="sh_number">50</span><span class="sh_symbol">;</span> 
+&nbsp;&nbsp;&nbsp;&nbsp;s <span class="sh_symbol">=</span> <span class="sh_number">1</span><span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">while</span> <span class="sh_symbol">(</span>s <span class="sh_symbol">&lt;</span> <span class="sh_number">1000</span><span class="sh_symbol">)</span> 
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_cbracket">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s <span class="sh_symbol">=</span> s <span class="sh_symbol">*</span> <span class="sh_number">2</span> <span class="sh_symbol">;</span> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n <span class="sh_symbol">=</span> n <span class="sh_symbol">+</span> <span class="sh_number">10</span><span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_cbracket">}</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_function">printf</span><span class="sh_symbol">(</span><span class="sh_string">"%d"</span><span class="sh_symbol">,</span> n<span class="sh_symbol">);</span>
+<span class="sh_cbracket">}</span></pre></div>
+	<div class="answer">Цикл while вы­пол­ня­ет­ся до тех пор, пока ис­тин­но условие s < 1000, т. е. пе­ре­мен­ная s определяет, сколь­ко раз вы­пол­нит­ся цикл. цикл вы­пол­нит­ся 10 раз. На 10-м шаге s ста­нет равной 1024 и усло­вие s < 1000 ока­жет­ся не выполненным, цикл прервется. Ответ: 150.</div>
+</div>
+<div class="task">Определите, что будет на­пе­ча­та­но в ре­зуль­та­те выполнения про­грам­мы
+<div class="source_code lang_c"><pre class="sh_c sh_sourceCode"><span class="sh_preproc">#include</span> <span class="sh_string">&lt;stdio.h&gt;</span>
+<span class="sh_type">void</span> <span class="sh_function">main</span><span class="sh_symbol">()</span>
+<span class="sh_cbracket">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_type">int</span> n<span class="sh_symbol">,</span> s<span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;n <span class="sh_symbol">=</span> <span class="sh_number">0</span><span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;s <span class="sh_symbol">=</span> <span class="sh_number">1</span><span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">while</span> <span class="sh_symbol">(</span>s <span class="sh_symbol">&lt;=</span> <span class="sh_number">1000</span><span class="sh_symbol">)</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_cbracket">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s <span class="sh_symbol">=</span> s <span class="sh_symbol">*</span> <span class="sh_number">3</span><span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n <span class="sh_symbol">=</span> n <span class="sh_symbol">+</span> <span class="sh_number">3</span><span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_cbracket">}</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_function">printf</span><span class="sh_symbol">(</span><span class="sh_string">"%d"</span><span class="sh_symbol">,</span> n<span class="sh_symbol">);</span>
+<span class="sh_cbracket">}</span></pre></div>
+	<div class="answer">21</div>
+</div>
+
+</div>
+
+</div>
+
+
+</body>
+
+</html>
