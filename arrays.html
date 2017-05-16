@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="wrapper">
+		<div class="left">
+			
+			<div class="task">В про­грам­ме ис­поль­зу­ет­ся од­но­мер­ный це­ло­чис­лен­ный мас­сив A с ин­дек­са­ми от 0 до 9. Зна­че­ния эле­мен­тов равны 5; 1; 6; 7; 8; 8; 7; 7; 6; 9 соответственно, т.е. A[0] = 5; A[1] = 1 и т.д. Опре­де­ли­те зна­че­ние пе­ре­мен­ной c после вы­пол­не­ния сле­ду­ю­ще­го фраг­мен­та программы, за­пи­сан­но­го ниже на раз­ных язы­ках программирования.
+			<div class="source_code lang_c"><pre class="sh_c sh_sourceCode">c <span class="sh_symbol">=</span> <span class="sh_number">0</span><span class="sh_symbol">;</span>
+<span class="sh_keyword">for</span> <span class="sh_symbol">(</span>i <span class="sh_symbol">=</span> <span class="sh_number">1</span><span class="sh_symbol">;</span> i <span class="sh_symbol">&lt;=</span> <span class="sh_number">9</span><span class="sh_symbol">;</span> i<span class="sh_symbol">++)</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">if</span> <span class="sh_symbol">(</span>A<span class="sh_symbol">[</span>i<span class="sh_number">-1</span><span class="sh_symbol">]</span> <span class="sh_symbol">&gt;=</span> A<span class="sh_symbol">[</span>i<span class="sh_symbol">])</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_cbracket">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t <span class="sh_symbol">=</span> A<span class="sh_symbol">[</span>i<span class="sh_symbol">];</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A<span class="sh_symbol">[</span>i<span class="sh_symbol">]</span> <span class="sh_symbol">=</span> A<span class="sh_symbol">[</span>i <span class="sh_symbol">-</span> <span class="sh_number">1</span><span class="sh_symbol">];</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A<span class="sh_symbol">[</span>i <span class="sh_symbol">-</span> <span class="sh_number">1</span><span class="sh_symbol">]</span> <span class="sh_symbol">=</span> t<span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_cbracket">}</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">else</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c<span class="sh_symbol">++;</span></pre></div>
+				<div class="answer">Если верно A[i - 1] >= A[i], то эле­мен­ты мас­си­ва ме­ня­ют­ся местами, если нет, то пе­ре­мен­ная c уве­ли­чи­ва­ет­ся на единицу. После вы­пол­не­ния цикла мас­сив будет вы­гля­деть так 1; 5; 6; 7; 8; 7; 7; 6; 8; 9, а пе­ре­мен­ная c будет равна 1 + 1 + 1 + 1 = 4.
+ 
+Ответ: 4.
+</div>
+			</div>
+			<div class="task">В программе описан одномерный целочисленный массив A с индексами от 0 до 10. Ниже представлен фрагмент этой программы, записанный на разных языках программирования, в котором значения элементов массива сначала задаются, а затем меняются.
+			<div class="source_code lang_c"><pre class="sh_c sh_sourceCode"><span class="sh_keyword">for</span> <span class="sh_symbol">(</span>i <span class="sh_symbol">=</span> <span class="sh_number">0</span><span class="sh_symbol">;</span> i <span class="sh_symbol">&lt;=</span> <span class="sh_number">10</span><span class="sh_symbol">;</span> i<span class="sh_symbol">++)</span>
+&nbsp;&nbsp;&nbsp;&nbsp;A<span class="sh_symbol">[</span>i<span class="sh_symbol">]=</span>i<span class="sh_number">-1</span><span class="sh_symbol">;</span>
+<span class="sh_keyword">for</span> <span class="sh_symbol">(</span>i <span class="sh_symbol">=</span> <span class="sh_number">1</span><span class="sh_symbol">;</span> i <span class="sh_symbol">&lt;=</span> <span class="sh_number">10</span><span class="sh_symbol">;</span> i<span class="sh_symbol">++)</span>
+&nbsp;&nbsp;&nbsp;&nbsp;A<span class="sh_symbol">[</span>i<span class="sh_number">-1</span><span class="sh_symbol">]=</span>A<span class="sh_symbol">[</span>i<span class="sh_symbol">];</span>
+A<span class="sh_symbol">[</span><span class="sh_number">10</span><span class="sh_symbol">]=</span><span class="sh_number">10</span><span class="sh_symbol">;</span></pre></div>
+Как изменятся элементы этого массива после выполнения фрагмента программы? <br>
+ 
+1) все элементы, кроме последнего, окажутся равны между собой <br>
+2) все элементы окажутся равны своим индексам <br>
+3) все элементы, кроме последнего, будут сдвинуты на один элемент вправо <br>
+4) все элементы, кроме последнего, уменьшатся на единицу
+				<div class="answer">После первого цикла элементы массива примут значения -1, 0, 1...9
+ 
+Второй цикл сдвигает элементы налево:
+i=1, A[0]:=A[1] = 0
+i=2, A[1]:=A[2] = 1,
+...
+i=10, A[9]= 9.
+Учитывая, что A[10]:=10, то все элементы окажутся равны своим индексам.
+ 
+Правильный ответ указан под номером 2.</div>
+			</div>
+			<div class="task">В программе описаны одномерный целочисленный массив А с индексами от 0 до 9 и целочисленные переменные i и t. Ниже представлен фрагмент этой программы, записанный на разных языках программирования.
+			<div class="source_code lang_c"><pre class="sh_c sh_sourceCode"><span class="sh_keyword">for</span> <span class="sh_symbol">(</span>i <span class="sh_symbol">=</span> <span class="sh_number">0</span><span class="sh_symbol">;</span> i <span class="sh_symbol">&lt;=</span> <span class="sh_number">9</span><span class="sh_symbol">;</span> i<span class="sh_symbol">++)</span>
+&nbsp;&nbsp;&nbsp;&nbsp;A<span class="sh_symbol">[</span>i<span class="sh_symbol">]</span> <span class="sh_symbol">=</span> i<span class="sh_number">+1</span><span class="sh_symbol">;</span>
+t <span class="sh_symbol">=</span> A<span class="sh_symbol">[</span><span class="sh_number">9</span><span class="sh_symbol">];</span>
+<span class="sh_keyword">for</span> <span class="sh_symbol">(</span>i <span class="sh_symbol">=</span> <span class="sh_number">8</span><span class="sh_symbol">;</span> i <span class="sh_symbol">&gt;=</span> <span class="sh_number">0</span><span class="sh_symbol">;</span> i<span class="sh_symbol">--)</span>
+&nbsp;&nbsp;&nbsp;&nbsp;A<span class="sh_symbol">[</span>i<span class="sh_number">+1</span><span class="sh_symbol">]</span> <span class="sh_symbol">=</span> A<span class="sh_symbol">[</span>i<span class="sh_symbol">];</span>
+ A<span class="sh_symbol">[</span><span class="sh_number">0</span><span class="sh_symbol">]</span> <span class="sh_symbol">=</span> t<span class="sh_symbol">;</span></pre></div>
+ Чему окажутся равны элементы этого массива после выполнения фрагмента программы? <br>
+ 1) 10	3	4	5	6	7	8	9	10	10 <br> 
+2) 10	10	10	10	10	10	10	10	10	10 <br>
+3) 10	1	1	1	1	1	1	1	1	1 <br>
+4) 10	1	2	3	4	5	6	7	8	9 <br>
+				<div class="answer">Первый цикл, заполняем массив:
+  
+i = 0: a[0] = 1, <br>
+i = 1: a[1] = 2, <br> 
+i = 2: a[2] = 3, <br>
+... <br>
+i = 9: a[9] = 10, <br>
+  <br>
+t:=10. <br>
+  <br>
+Второй цикл, меняем значения всех элементов: <br>
+  <br>
+i = 8: a[9] = a[8] = 9, <br>
+i = 7: a[8] = a[7] = 8, <br>
+... <br>
+i = 2: a[3] = a[2] = 3 <br>
+i = 1: a[2] = a[1] = 2 <br>
+i = 0: a[1] = a[0]  =  0, <br>
+  <br>
+Выполним последнее действие: a[0] = 10. <br>
+  <br>
+Поэтому в результате выполнении программы элементы массива будут равны: 10 1 2 3 4 5 6 7 8 9. <br>
+ 
+Правильный ответ указан под номером 4</div>
+			</div>
+			<div class="task">В про­грам­ме опи­сан од­но­мер­ный це­ло­чис­лен­ный мас­сив A с ин­дек­са­ми от 0 до 9 и це­ло­чис­лен­ные пе­ре­мен­ные i и t. Ниже пред­став­лен фраг­мент этой программы, за­пи­сан­ный на раз­ных язы­ках программирования.
+			<div class="source_code lang_c"><pre class="sh_c sh_sourceCode"><span class="sh_keyword">for</span> <span class="sh_symbol">(</span>i <span class="sh_symbol">=</span> <span class="sh_number">0</span><span class="sh_symbol">;</span> i <span class="sh_symbol">&lt;=</span> <span class="sh_number">9</span><span class="sh_symbol">;</span> i<span class="sh_symbol">++)</span> 
+&nbsp;&nbsp;&nbsp;&nbsp;A<span class="sh_symbol">[</span>i<span class="sh_symbol">]</span> <span class="sh_symbol">=</span> i<span class="sh_number">+1</span><span class="sh_symbol">;</span> 
+t <span class="sh_symbol">=</span> A<span class="sh_symbol">[</span><span class="sh_number">0</span><span class="sh_symbol">];</span> 
+<span class="sh_keyword">for</span> <span class="sh_symbol">(</span>i <span class="sh_symbol">=</span> <span class="sh_number">1</span><span class="sh_symbol">;</span> i <span class="sh_symbol">&lt;=</span> <span class="sh_number">9</span><span class="sh_symbol">;</span> i<span class="sh_symbol">++)</span> 
+&nbsp;&nbsp;&nbsp;&nbsp;A<span class="sh_symbol">[</span>i<span class="sh_number">-1</span><span class="sh_symbol">]</span> <span class="sh_symbol">=</span> A<span class="sh_symbol">[</span>i<span class="sh_symbol">];</span> 
+A<span class="sh_symbol">[</span><span class="sh_number">9</span><span class="sh_symbol">]</span> <span class="sh_symbol">=</span> t<span class="sh_symbol">;</span></pre></div>
+				<div class="answer">2, 3, ..., 9, 10, 1.</div>
+			</div>
+			<div class="task">В программе используется одномерный целочисленный массив A с индексами от 0 до 9. Значения элементов равны 1, 2, 5, 8, 9, 3, 4, 0, 7, 6 соответственно, т. е. A[0] = 1, A[1] = 2 и т. д.
+Определите значение переменной j после выполнения следующего фрагмента программы (записанного ниже на пяти языках программирования).
+<div class="source_code lang_c"><pre class="sh_c sh_sourceCode">j <span class="sh_symbol">=</span> <span class="sh_number">5</span><span class="sh_symbol">;</span>
+<span class="sh_keyword">while</span> <span class="sh_symbol">(</span>A<span class="sh_symbol">[</span>j<span class="sh_symbol">]</span> <span class="sh_symbol">&lt;</span> A<span class="sh_symbol">[</span>j<span class="sh_number">-1</span><span class="sh_symbol">])</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_cbracket">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t <span class="sh_symbol">=</span> A<span class="sh_symbol">[</span>j<span class="sh_symbol">];</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A<span class="sh_symbol">[</span>j<span class="sh_symbol">]</span> <span class="sh_symbol">=</span> A<span class="sh_symbol">[</span>j<span class="sh_number">-1</span><span class="sh_symbol">];</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A<span class="sh_symbol">[</span>j<span class="sh_number">-1</span><span class="sh_symbol">]</span> <span class="sh_symbol">=</span> t<span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;j <span class="sh_symbol">-=</span> <span class="sh_number">1</span><span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_cbracket">}</span></pre></div>
+				<div class="answer">2</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
