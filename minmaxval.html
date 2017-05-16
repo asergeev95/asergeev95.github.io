@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="wrapper">
+	<div class="left">
+		
+		<div class="task">Определите, какое число будет на­пе­ча­та­но в ре­зуль­та­те вы­пол­не­ния сле­ду­ю­ще­го ал­го­рит­ма (для Ва­ше­го удоб­ства ал­го­ритм пред­став­лен на че­ты­рех языках):
+		<div class="source_code lang_c"><pre class="sh_c sh_sourceCode"><span class="sh_preproc">#include</span> <span class="sh_string">&lt;stdio.h&gt;</span>
+<span class="sh_type">int</span> <span class="sh_function">F</span><span class="sh_symbol">(</span><span class="sh_type">int</span> x<span class="sh_symbol">)</span>
+<span class="sh_cbracket">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">return</span> <span class="sh_number">16</span><span class="sh_symbol">*(</span><span class="sh_number">9</span><span class="sh_symbol">+</span>x<span class="sh_symbol">)*(</span><span class="sh_number">9</span><span class="sh_symbol">+</span>x<span class="sh_symbol">)+</span><span class="sh_number">127</span>
+<span class="sh_cbracket">}</span>
+<span class="sh_type">void</span> <span class="sh_function">main</span><span class="sh_symbol">()</span>
+<span class="sh_cbracket">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_type">int</span> a<span class="sh_symbol">,</span> b<span class="sh_symbol">,</span> t<span class="sh_symbol">,</span> M<span class="sh_symbol">,</span> R<span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;a <span class="sh_symbol">=</span> <span class="sh_symbol">-</span><span class="sh_number">20</span><span class="sh_symbol">;</span> b <span class="sh_symbol">=</span> <span class="sh_number">20</span><span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;M <span class="sh_symbol">=</span> a<span class="sh_symbol">;</span> R <span class="sh_symbol">=</span> <span class="sh_function">F</span><span class="sh_symbol">(</span>a<span class="sh_symbol">);</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">for</span> <span class="sh_symbol">(</span>t<span class="sh_symbol">=</span>a<span class="sh_symbol">;</span> t<span class="sh_symbol">&lt;=</span>b<span class="sh_symbol">;</span> t<span class="sh_symbol">++)</span><span class="sh_cbracket">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">if</span> <span class="sh_symbol">(</span><span class="sh_function">F</span><span class="sh_symbol">(</span>t<span class="sh_symbol">)</span> <span class="sh_symbol">&gt;</span>R<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;M <span class="sh_symbol">=</span> t<span class="sh_symbol">;</span> R <span class="sh_symbol">=</span> <span class="sh_function">F</span><span class="sh_symbol">(</span>t<span class="sh_symbol">);</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_cbracket">}</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_cbracket">}</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_function">printf</span><span class="sh_symbol">(</span><span class="sh_string">"%d"</span><span class="sh_symbol">,</span> M<span class="sh_symbol">);</span>
+<span class="sh_cbracket">}</span></pre></div>
+			<div class="answer">Ал­го­ритм ищет точку, в ко­то­рой функция F(t) имеет наи­боль­шее зна­че­ние на ин­тер­ва­ле от a до b. Ответ 20.</div>
+		</div>
+		<div class="task">Определите, какое число будет на­пе­ча­та­но в ре­зуль­та­те выполнения сле­ду­ю­ще­го алгоритма (для Ва­ше­го удобства ал­го­ритм представлен на четырёх языках):
+		<div class="source_code lang_c"><pre class="sh_c sh_sourceCode"><span class="sh_preproc">#include</span><span class="sh_string">&lt;stdio.h&gt;</span>
+<span class="sh_type">int</span> <span class="sh_function">F</span><span class="sh_symbol">(</span><span class="sh_type">int</span> x<span class="sh_symbol">)</span>
+<span class="sh_cbracket">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">return</span> <span class="sh_number">281</span> <span class="sh_symbol">-</span> <span class="sh_number">2</span> <span class="sh_symbol">*</span> <span class="sh_symbol">(</span><span class="sh_number">17</span> <span class="sh_symbol">+</span> x<span class="sh_symbol">)</span> <span class="sh_symbol">*</span> <span class="sh_symbol">(</span><span class="sh_number">17</span> <span class="sh_symbol">+</span> x<span class="sh_symbol">);</span>
+<span class="sh_cbracket">}</span>
+<span class="sh_type">void</span> <span class="sh_function">main</span><span class="sh_symbol">()</span>
+<span class="sh_cbracket">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_type">int</span> a<span class="sh_symbol">,</span> b<span class="sh_symbol">,</span> t<span class="sh_symbol">,</span> M<span class="sh_symbol">,</span> R<span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;a <span class="sh_symbol">=</span> <span class="sh_symbol">-</span><span class="sh_number">7</span><span class="sh_symbol">;</span> b <span class="sh_symbol">=</span> <span class="sh_number">25</span><span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;M <span class="sh_symbol">=</span> a<span class="sh_symbol">;</span> R <span class="sh_symbol">=</span> <span class="sh_function">F</span><span class="sh_symbol">(</span>a<span class="sh_symbol">);</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">for</span> <span class="sh_symbol">(</span>t <span class="sh_symbol">=</span> a<span class="sh_symbol">;</span> t <span class="sh_symbol">&lt;=</span> b<span class="sh_symbol">;</span> t<span class="sh_symbol">++)</span><span class="sh_cbracket">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">if</span> <span class="sh_symbol">(</span><span class="sh_function">F</span><span class="sh_symbol">(</span>t<span class="sh_symbol">)</span> <span class="sh_symbol">&gt;</span> R<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;M <span class="sh_symbol">=</span> t<span class="sh_symbol">;</span> R <span class="sh_symbol">=</span> <span class="sh_function">F</span><span class="sh_symbol">(</span>t<span class="sh_symbol">);</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_cbracket">}</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_cbracket">}</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_function">printf</span><span class="sh_symbol">(</span><span class="sh_string">"%d"</span><span class="sh_symbol">,</span> R<span class="sh_symbol">);</span>
+<span class="sh_cbracket">}</span></pre></div>
+			<div class="answer">Ал­го­ритм предназначен для по­ис­ка наибольшего зна­че­ния функции F(t) на от­рез­ке от a до b. Ответ: 81</div>
+		</div>
+		<div class="task">Напишите в от­ве­те число, ко­то­рое будет на­пе­ча­та­но в ре­зуль­та­те вы­пол­не­ния сле­ду­ю­ще­го ал­го­рит­ма (для Ва­ше­го удоб­ства ал­го­ритм пред­став­лен на четырёх язы­ках программирования).
+		<div class="source_code lang_c"><pre class="sh_c sh_sourceCode"><span class="sh_preproc">#include</span><stdio.h> </stdio.h>
+<span class="sh_type">int</span> <span class="sh_function">F</span><span class="sh_symbol">(</span><span class="sh_type">int</span> x<span class="sh_symbol">)</span> 
+<span class="sh_cbracket">{</span>   
+&nbsp;&nbsp;<span class="sh_keyword">return</span> <span class="sh_number">10</span><span class="sh_symbol">*</span>x<span class="sh_symbol">*</span>x<span class="sh_number">-100</span><span class="sh_symbol">*</span><span class="sh_function">abs</span><span class="sh_symbol">(</span>x<span class="sh_symbol">)+</span><span class="sh_number">210</span><span class="sh_symbol">;</span> 
+<span class="sh_cbracket">}</span>   
+&nbsp;
+<span class="sh_type">void</span> <span class="sh_function">main</span><span class="sh_symbol">()</span> 
+<span class="sh_cbracket">{</span>   
+&nbsp;&nbsp;<span class="sh_type">int</span> a<span class="sh_symbol">,</span> b<span class="sh_symbol">,</span> t<span class="sh_symbol">,</span> M<span class="sh_symbol">,</span> R<span class="sh_symbol">;</span>   
+&nbsp;&nbsp;a <span class="sh_symbol">=</span> <span class="sh_symbol">-</span><span class="sh_number">15</span><span class="sh_symbol">;</span>  b <span class="sh_symbol">=</span> <span class="sh_number">15</span><span class="sh_symbol">;</span>   
+&nbsp;&nbsp;M <span class="sh_symbol">=</span> a<span class="sh_symbol">;</span> R <span class="sh_symbol">=</span> <span class="sh_function">F</span><span class="sh_symbol">(</span>a<span class="sh_symbol">);</span>   
+&nbsp;&nbsp;<span class="sh_keyword">for</span> <span class="sh_symbol">(</span>t <span class="sh_symbol">=</span> a<span class="sh_symbol">;</span> t <span class="sh_symbol">&lt;=</span> b<span class="sh_symbol">;</span> t<span class="sh_symbol">++)</span> <span class="sh_cbracket">{</span>     
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">if</span> <span class="sh_symbol">(</span><span class="sh_function">F</span><span class="sh_symbol">(</span>t<span class="sh_symbol">)</span> <span class="sh_symbol">&lt;</span> R<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span>       
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;M <span class="sh_symbol">=</span> t<span class="sh_symbol">;</span> R <span class="sh_symbol">=</span> <span class="sh_function">F</span><span class="sh_symbol">(</span>t<span class="sh_symbol">);</span>     
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_cbracket">}</span>   
+&nbsp;&nbsp;<span class="sh_cbracket">}</span>   
+&nbsp;&nbsp;<span class="sh_function">printf</span><span class="sh_symbol">(</span><span class="sh_string">"%d"</span><span class="sh_symbol">,</span> M<span class="sh_number">+50</span><span class="sh_symbol">);</span> 
+<span class="sh_cbracket">}</span></pre></div>
+			<div class="answer">Ал­го­ритм пред­на­зна­чен для по­ис­ка наи­мень­ше­го t, при ко­то­ром функ­ция F(t) имеет наи­мень­шее зна­че­ние на от­рез­ке от a до b.Ответ: 45.</div>
+		</div>
+		<div class="task">Определите, какое число будет напечатано в результате выполнения следующего алгоритма (для Вашего удобства алгоритм представлен на четырех языках):
+		<div class="source_code lang_c"><pre class="sh_c sh_sourceCode"><span class="sh_preproc">#include</span><span class="sh_string">&lt;stdio.h&gt;</span>
+<span class="sh_type">int</span> <span class="sh_function">F</span><span class="sh_symbol">(</span><span class="sh_type">int</span> x<span class="sh_symbol">)</span>
+<span class="sh_cbracket">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">return</span> <span class="sh_number">2</span><span class="sh_symbol">*(</span>x<span class="sh_number">-9</span><span class="sh_symbol">)*(</span>x<span class="sh_number">-9</span><span class="sh_symbol">);</span>
+<span class="sh_cbracket">}</span>
+<span class="sh_type">void</span> <span class="sh_function">main</span><span class="sh_symbol">()</span>
+<span class="sh_cbracket">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_type">int</span> a<span class="sh_symbol">,</span> b<span class="sh_symbol">,</span> t<span class="sh_symbol">,</span> M<span class="sh_symbol">,</span> R<span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;a <span class="sh_symbol">=</span> <span class="sh_symbol">-</span><span class="sh_number">20</span><span class="sh_symbol">;</span> b <span class="sh_symbol">=</span> <span class="sh_number">20</span><span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;M <span class="sh_symbol">=</span> a<span class="sh_symbol">;</span> R <span class="sh_symbol">=</span> <span class="sh_function">F</span><span class="sh_symbol">(</span>a<span class="sh_symbol">);</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">for</span> <span class="sh_symbol">(</span>t<span class="sh_symbol">=</span>a<span class="sh_symbol">;</span> t<span class="sh_symbol">&lt;=</span>b<span class="sh_symbol">;</span> t<span class="sh_symbol">++)</span><span class="sh_cbracket">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">if</span> <span class="sh_symbol">(</span><span class="sh_function">F</span><span class="sh_symbol">(</span>t<span class="sh_symbol">)</span> <span class="sh_symbol">&lt;</span> R <span class="sh_symbol">)</span> <span class="sh_cbracket">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;M <span class="sh_symbol">=</span> t<span class="sh_symbol">;</span> R <span class="sh_symbol">=</span> <span class="sh_function">F</span><span class="sh_symbol">(</span>t<span class="sh_symbol">);</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_cbracket">}</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_cbracket">}</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_function">printf</span><span class="sh_symbol">(</span><span class="sh_string">"%d"</span><span class="sh_symbol">,</span> M<span class="sh_symbol">);</span>
+<span class="sh_cbracket">}</span></pre></div>
+			<div class="answer">Алгоритм ищет точку, в которой наименьшее значение функции F(t) на интервале от a до b. Ответ: 9</div>
+		</div>
+		<div class="task">Напишите в от­ве­те число, ко­то­рое будет на­пе­ча­та­но в ре­зуль­та­те выполнения сле­ду­ю­ще­го ал­го­рит­ма (для Ва­ше­го удоб­ства ал­го­ритм представлен на четырёх языках).
+		<div class="source_code lang_c"><pre class="sh_c sh_sourceCode"><span class="sh_preproc">#include</span> <span class="sh_string">&lt;stdio.h&gt;</span>
+<span class="sh_type">int</span> <span class="sh_function">F</span><span class="sh_symbol">(</span><span class="sh_type">int</span> x<span class="sh_symbol">)</span> 
+<span class="sh_cbracket">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">return</span> <span class="sh_symbol">(</span>x<span class="sh_symbol">*</span>x<span class="sh_number">-4</span><span class="sh_symbol">)*(</span>x<span class="sh_symbol">*</span>x<span class="sh_number">-4</span><span class="sh_symbol">)</span> <span class="sh_symbol">+</span><span class="sh_number">11</span><span class="sh_symbol">;</span>
+<span class="sh_cbracket">}</span>
+<span class="sh_type">void</span> <span class="sh_function">main</span><span class="sh_symbol">()</span> <span class="sh_cbracket">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_type">int</span> a<span class="sh_symbol">,</span> b<span class="sh_symbol">,</span> t<span class="sh_symbol">,</span> M<span class="sh_symbol">,</span> R<span class="sh_symbol">;</span> 
+&nbsp;&nbsp;&nbsp;&nbsp;a <span class="sh_symbol">=</span> <span class="sh_symbol">-</span><span class="sh_number">13</span><span class="sh_symbol">;</span> 
+&nbsp;&nbsp;&nbsp;&nbsp;b <span class="sh_symbol">=</span> <span class="sh_number">13</span><span class="sh_symbol">;</span> 
+&nbsp;&nbsp;&nbsp;&nbsp;M <span class="sh_symbol">=</span> a<span class="sh_symbol">;</span> 
+&nbsp;&nbsp;&nbsp;&nbsp;R <span class="sh_symbol">=</span> <span class="sh_function">F</span> <span class="sh_symbol">(</span>a<span class="sh_symbol">);</span> 
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">for</span> <span class="sh_symbol">(</span>t <span class="sh_symbol">=</span> a<span class="sh_symbol">;</span> t <span class="sh_symbol">&lt;=</span> b<span class="sh_symbol">;</span> t<span class="sh_symbol">++)</span> <span class="sh_cbracket">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="sh_keyword">if</span> <span class="sh_symbol">(</span><span class="sh_function">F</span><span class="sh_symbol">(</span>t<span class="sh_symbol">)</span> <span class="sh_symbol">&lt;</span> R<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;M <span class="sh_symbol">=</span> t<span class="sh_symbol">;</span> R <span class="sh_symbol">=</span> <span class="sh_function">F</span><span class="sh_symbol">(</span>t<span class="sh_symbol">);</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_cbracket">}</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_cbracket">}</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_function">printf</span><span class="sh_symbol">(</span><span class="sh_string">"%d"</span><span class="sh_symbol">,</span> M<span class="sh_number">+18</span><span class="sh_symbol">);</span>
+<span class="sh_cbracket">}</span></pre></div>
+			<div class="answer">Алгоритм пред­на­зна­чен для по­ис­ка наименьшего t, при ко­то­ром функция F(t) имеет наи­мень­шее значение на от­рез­ке от a до b. Поскольку ал­го­ритм осуществляет поиск наи­мень­ше­го t, при ко­то­ром функция F(t) имеет наи­мень­шее значение, пе­ре­мен­ной M будет при­сво­е­но зна­че­ние −2. Вы­пол­нив последнее дей­ствие «write(M+18)», про­грам­ма выведет на экран число 16.
+ 
+Ответ: 16.</div>
+		</div>
+		<div class="task">Напишите в ответе число, которое будет напечатано в результате выполнения следующего алгоритма
+		<div class="source_code lang_pascal"><pre class="sh_pascal sh_sourceCode"><span class="sh_keyword">var</span> a<span class="sh_symbol">,</span> b<span class="sh_symbol">,</span> N<span class="sh_symbol">,</span> t<span class="sh_symbol">:</span> <span class="sh_type">integer</span><span class="sh_symbol">;</span>
+<span class="sh_keyword">Function</span> <span class="sh_function">F</span><span class="sh_symbol">(</span>x<span class="sh_symbol">:</span> <span class="sh_type">integer</span><span class="sh_symbol">):</span><span class="sh_type">integer</span><span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">begin</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F <span class="sh_symbol">:=</span> <span class="sh_symbol">(</span>x <span class="sh_symbol">-</span> <span class="sh_number">16</span><span class="sh_symbol">)*(</span>x <span class="sh_symbol">+</span> <span class="sh_number">25</span><span class="sh_symbol">)</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">end</span><span class="sh_symbol">;</span>
+<span class="sh_keyword">begin</span>
+&nbsp;&nbsp;&nbsp;&nbsp;a <span class="sh_symbol">:=</span> <span class="sh_symbol">-</span><span class="sh_number">100</span><span class="sh_symbol">;</span> b <span class="sh_symbol">:=</span> <span class="sh_number">100</span><span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;N <span class="sh_symbol">:=</span> <span class="sh_number">0</span><span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">for</span> t <span class="sh_symbol">:=</span> a <span class="sh_keyword">to</span> b <span class="sh_keyword">do</span> <span class="sh_keyword">begin</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">if</span> <span class="sh_symbol">(</span><span class="sh_function">F</span><span class="sh_symbol">(</span>t<span class="sh_symbol">)</span> <span class="sh_symbol">&lt;=</span> <span class="sh_number">0</span><span class="sh_symbol">)</span> <span class="sh_keyword">then</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;N <span class="sh_symbol">:=</span> N <span class="sh_symbol">+</span> <span class="sh_number">1</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">end</span><span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">write</span><span class="sh_symbol">(</span>N<span class="sh_symbol">)</span>
+<span class="sh_keyword">end</span><span class="sh_symbol">.</span></pre></div>
+			<div class="answer">Предложенный алгоритм предназначен для нахождения количества целочисленных точек на отрезке [−100; 100], в которых функция F(x) = (x − 16)(x + 25) принимает неположительные значения. Найдём количество таких точек. Данная функция задаёт параболу, которая пересекает ось Ox в двух точках: x = −25 и x  = 16. Между этими точками находится 25 − (−16) − 1 = 40 целых точек, в которых функция принимает отрицательные значения. Значит, функция принимает неположительные значения в 42-х точках.
+ 
+Ответ: 42.</div>
+		</div>
+	</div>
+</div>
+	
+</body>
+</html>
