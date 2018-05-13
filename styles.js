@@ -89,7 +89,7 @@ module.exports = "/*!\n * Bootstrap v4.1.1 (https://getbootstrap.com/)\n * Copyr
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".nav-tabs {\r\n  display: none;\r\n}\r\n"
 
 /***/ }),
 
