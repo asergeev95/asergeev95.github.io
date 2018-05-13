@@ -67,7 +67,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".nav-tabs {\r\n  display: none;\r\n}\r\n"
 
 /***/ }),
 
@@ -78,7 +78,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-header></app-header>\r\n<div class=\"container mb-5\">\r\n  <div class=\"py-5 text-center\">\r\n    <h2>Выбор измерительных трансформаторов тока и напряжения</h2>\r\n  </div>\r\n  <div class=\"container\">\r\n    <div class=\"row\">\r\n      <div class=\"col\">\r\n        <button class=\"btn btn-outline-primary btn-block\" (click)=\"t.select('tab-selectbyid1')\">ТТ</button>\r\n      </div>\r\n      <div class=\"col\">\r\n        <button class=\"btn btn-outline-primary btn-block\" (click)=\"t.select('tab-selectbyid2')\">ТН</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"mb-4\"></div>\r\n  <app-net-params-form></app-net-params-form>\r\n\r\n  <ngb-tabset #t=\"ngbTabset\">\r\n    <ngb-tab id=\"tab-selectbyid1\">\r\n      <ng-template ngbTabContent>\r\n        <app-amperage-transformer></app-amperage-transformer>\r\n      </ng-template>\r\n    </ngb-tab>\r\n    <ngb-tab id=\"tab-selectbyid2\">\r\n      <ng-template ngbTabContent>\r\n        <app-voltage-transformer-form></app-voltage-transformer-form>\r\n      </ng-template>\r\n    </ngb-tab>\r\n  </ngb-tabset>\r\n</div>\r\n<app-footer></app-footer>\r\n<router-outlet></router-outlet>"
+module.exports = "<app-header></app-header>\r\n<div class=\"container mb-5\">\r\n  <div class=\"py-5 text-center\">\r\n    <h2>Выбор измерительных трансформаторов тока и напряжения</h2>\r\n  </div>\r\n  <div class=\"container\">\r\n    <div class=\"row\">\r\n      <div class=\"col\">\r\n        <button class=\"btn btn-outline-primary btn-block\" (click)=\"t.select('tab-tt'); setTabType('tab-tt')\">ТТ</button>\r\n      </div>\r\n      <div class=\"col\">\r\n        <button class=\"btn btn-outline-primary btn-block\" (click)=\"t.select('tab-tn'); setTabType('tab-tn')\">ТН</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"mb-4\"></div>\r\n  <app-net-params-form [isVisibleFields]=\"isVisibleFields\"></app-net-params-form>\r\n\r\n  <ngb-tabset #t=\"ngbTabset\">\r\n    <ngb-tab id=\"tab-tt\">\r\n      <ng-template ngbTabContent>\r\n        <app-amperage-transformer></app-amperage-transformer>\r\n      </ng-template>\r\n    </ngb-tab>\r\n    <ngb-tab id=\"tab-tn\">\r\n      <ng-template ngbTabContent>\r\n        <app-voltage-transformer-form></app-voltage-transformer-form>\r\n      </ng-template>\r\n    </ngb-tab>\r\n  </ngb-tabset>\r\n</div>\r\n<app-footer></app-footer>\r\n<router-outlet></router-outlet>\r\n"
 
 /***/ }),
 
@@ -103,7 +103,11 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
         this.title = 'app';
+        this.isVisibleFields = true;
     }
+    AppComponent.prototype.setTabType = function (name) {
+        this.isVisibleFields = name === 'tab-tt';
+    };
     AppComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-root',
@@ -205,7 +209,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col\">\r\n    <h4 class=\"mb-3\">Параметры ТТ</h4>\r\n    <form class=\"needs-validation\" novalidate=\"\" [formGroup]=\"form\">\r\n      <div class=\"row\">\r\n        <div class=\"col-md-6 mb-3\">\r\n          <label>Номинальное напряжение, кВ</label>\r\n          <ng-select [items]=\"ratedVoltageData\" bindValue=\"value\" bindLabel=\"value\" formControlName=\"ratedVoltage\" (ngModelChange)=\"compareVoltages($event)\">\r\n          </ng-select>\r\n\r\n        </div>\r\n        <div class=\"col-md-6 mb-3\">\r\n          <label>Вторичная номинальная нагрузка, ВА</label>\r\n          <ng-select [items]=\"ratedSecondaryVoltageData\" formControlName=\"secondaryVoltage\">\r\n          </ng-select>\r\n        </div>\r\n      </div>\r\n      <div class=\"row\">\r\n        <div class=\"col-sm\">\r\n          <label>Номинальный первичный ток, А</label>\r\n          <ng-select [items]=\"primaryAmperageData\" formControlName=\"primaryAmperage\">\r\n          </ng-select>\r\n        </div>\r\n        <div class=\"col-sm\">\r\n          <label>Номинальный вторичный ток, А</label>\r\n          <ng-select [items]=\"secondaryAmperageData\" formControlName=\"secondaryAmperage\" (ngModelChange)=\"calculateTransformCoef()\">\r\n          </ng-select>\r\n        </div>\r\n        <div class=\"col-sm\">\r\n          <label>Коэффициент трансформации</label>\r\n          <input type=\"text\" class=\"form-control\" disabled [value]=\"transformCoef\">\r\n        </div>\r\n      </div>\r\n      <div class=\"row\">\r\n          <div class=\"col-sm\">\r\n              <label>Обмотка учета</label>\r\n              <ng-select [items]=\"accountWinding\" formControlName=\"firstWinding\" (ngModelChange)=\"onWindingChange($event)\">\r\n              </ng-select>\r\n          </div>\r\n          <div class=\"col-sm\">\r\n              <label>Обмотка измерения</label>\r\n              <ng-select [items]=\"measureWinding\" formControlName=\"secondWinding\" (ngModelChange)=\"onWindingChange($event)\">\r\n              </ng-select>\r\n          </div>\r\n          <div class=\"col-sm\">\r\n              <label>Обмотка защиты</label>\r\n              <ng-select [items]=\"defenceWinding\" formControlName=\"thirdWinding\" (ngModelChange)=\"onWindingChange($event)\">\r\n              </ng-select>\r\n          </div>\r\n      </div>\r\n      <div class=\"row\">\r\n        <div class=\"col-md-6 mb-3\">\r\n          <label>Ток динамической стойкости, кА</label>\r\n          <input type=\"text\" class=\"form-control\" formControlName=\"dynamicAmperage\">\r\n          <div class=\"invalid-feedback\">\r\n            Valid first name is required.\r\n          </div>\r\n        </div>\r\n        <div class=\"col-md-6 mb-3\">\r\n          <label>Ток термической стойкости, кА</label>\r\n          <input type=\"text\" class=\"form-control\" formControlName=\"termicAmperage\">\r\n          <div class=\"invalid-feedback\">\r\n            Valid first name is required.\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"row\">\r\n          <div class=\"col-md-6 mb-3\">\r\n            <label>Время протекания тока термической стойкости, c</label>\r\n            <input type=\"text\" class=\"form-control\" formControlName=\"termicAmperageTime\">\r\n            <div class=\"invalid-feedback\">\r\n              Valid first name is required.\r\n            </div>\r\n          </div>\r\n        </div>\r\n      <h4 class=\"my-3\">Параметры вторичной сети</h4>\r\n      <div class=\"row\">\r\n        <div class=\"col-md-6 mb-3\">\r\n          <label>Значение cos</label>\r\n          <ng-select [items]=\"cosinData\" formControlName=\"cosin\">\r\n          </ng-select>\r\n        </div>\r\n        <div class=\"col-md-6 mb-3\">\r\n          <label>Длина линии, м</label>\r\n          <input type=\"text\" class=\"form-control\" formControlName=\"lineLength\">\r\n        </div>\r\n      </div>\r\n      <div class=\"row\">\r\n        <div class=\"col-md-6 mb-3\">\r\n          <label>Сопротивление приборов, Ом</label>\r\n          <input type=\"text\" class=\"form-control\" formControlName=\"resistance\">\r\n        </div>\r\n        <div class=\"col-md-6 mb-3\">\r\n          <label>Материал проводников</label>\r\n          <ng-select [items]=\"wireTypeData\" formControlName=\"wireType\" (ngModelChange)=\"onWireTypeChange($event)\">\r\n          </ng-select>\r\n        </div>\r\n        <div class=\"col-md-6 mb-3\">\r\n          <label>Сечение проводников, мм<sup>2</sup></label>\r\n          <ng-select [items]=\"crossConductorData\" formControlName=\"crossConductor\">\r\n          </ng-select>\r\n        </div>\r\n      </div>\r\n      <hr class=\"mb-4\">\r\n      <button class=\"btn btn-primary btn-lg btn-block\" (click)=\"calculate()\">Рассчитать</button>\r\n    </form>\r\n  </div>\r\n</div>"
+module.exports = "<div class=\"row\">\r\n  <div class=\"col\">\r\n    <h4 class=\"mb-3\">Параметры ТТ</h4>\r\n    <form class=\"needs-validation\" novalidate=\"\" [formGroup]=\"form\">\r\n      <div class=\"row\">\r\n        <div class=\"col-md-6 mb-3\">\r\n          <label>Номинальное напряжение, кВ</label>\r\n          <ng-select [items]=\"ratedVoltageData\" bindValue=\"value\" bindLabel=\"value\" formControlName=\"ratedVoltage\" (ngModelChange)=\"compareVoltages($event)\">\r\n          </ng-select>\r\n\r\n        </div>\r\n        <div class=\"col-md-6 mb-3\">\r\n          <label>Вторичная номинальная нагрузка, ВА</label>\r\n          <ng-select [items]=\"ratedSecondaryVoltageData\" formControlName=\"secondaryVoltage\">\r\n          </ng-select>\r\n        </div>\r\n      </div>\r\n      <div class=\"row\">\r\n        <div class=\"col-sm\">\r\n          <label>Номинальный первичный ток, А</label>\r\n          <ng-select [items]=\"primaryAmperageData\" bindValue=\"value\" bindLabel=\"value\" formControlName=\"primaryAmperage\" (ngModelChange)=\"setMaxWorkFirstAmperage($event)\">\r\n          </ng-select>\r\n        </div>\r\n        <div class=\"col-sm\">\r\n          <label>Номинальный вторичный ток, А</label>\r\n          <ng-select [items]=\"secondaryAmperageData\" formControlName=\"secondaryAmperage\" (ngModelChange)=\"calculateTransformCoef()\">\r\n          </ng-select>\r\n        </div>\r\n        <div class=\"col-sm\">\r\n          <label>Коэффициент трансформации</label>\r\n          <input type=\"text\" class=\"form-control\" disabled [value]=\"transformCoef\">\r\n        </div>\r\n      </div>\r\n      <div class=\"row\">\r\n        <div class=\"col-sm\">\r\n          <label>Обмотка учета</label>\r\n          <ng-select [items]=\"accountWinding\" formControlName=\"firstWinding\" (ngModelChange)=\"onWindingChange($event)\">\r\n          </ng-select>\r\n        </div>\r\n        <div class=\"col-sm\">\r\n          <label>Обмотка измерения</label>\r\n          <ng-select [items]=\"measureWinding\" formControlName=\"secondWinding\" (ngModelChange)=\"onWindingChange($event)\">\r\n          </ng-select>\r\n        </div>\r\n        <div class=\"col-sm\">\r\n          <label>Обмотка защиты</label>\r\n          <ng-select [items]=\"defenceWinding\" formControlName=\"thirdWinding\" (ngModelChange)=\"onWindingChange($event)\">\r\n          </ng-select>\r\n        </div>\r\n      </div>\r\n      <div class=\"row\">\r\n        <div class=\"col-md-6 mb-3\">\r\n          <label>Ток динамической стойкости, кА</label>\r\n          <input type=\"text\" class=\"form-control\" formControlName=\"dynamicAmperage\">\r\n          <div class=\"invalid-feedback\">\r\n            Valid first name is required.\r\n          </div>\r\n        </div>\r\n        <div class=\"col-md-6 mb-3\">\r\n          <label>Ток термической стойкости, кА</label>\r\n          <input type=\"text\" class=\"form-control\" formControlName=\"termicAmperage\">\r\n          <div class=\"invalid-feedback\">\r\n            Valid first name is required.\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"row\">\r\n        <div class=\"col-md-6 mb-3\">\r\n          <label>Время протекания тока термической стойкости, c</label>\r\n          <input type=\"text\" class=\"form-control\" formControlName=\"termicAmperageTime\">\r\n          <div class=\"invalid-feedback\">\r\n            Valid first name is required.\r\n          </div>\r\n        </div>\r\n        <div class=\"col-md-6 mb-3\">\r\n          <label>Тип соединения, м</label>\r\n          <ng-select [items]=\"lengthCalcData\" formControlName=\"lengthCalc\" (ngModelChange)=\"calculateLength($event)\">\r\n          </ng-select>\r\n        </div>\r\n        <div class=\"row\">\r\n          <div *ngIf=\"compareAllowedLoad === 'Нужно добавить резистор'\">\r\n            <div class=\"row\">\r\n              <div class=\"col\">\r\n                <label>Мощность добавочного резистора, ВА</label>\r\n                <input type=\"text\" class=\"form-control\" formControlName=\"additionalResistance\">\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <h4 class=\"my-3\">Параметры вторичной сети</h4>\r\n      <div class=\"row\">\r\n        <div class=\"col-md-6 mb-3\">\r\n          <label>Значение cos</label>\r\n          <ng-select [items]=\"cosinData\" formControlName=\"cosin\">\r\n          </ng-select>\r\n        </div>\r\n        <div class=\"col-md-6 mb-3\">\r\n          <label>Длина линии, м</label>\r\n          <input type=\"text\" class=\"form-control\" formControlName=\"lineLength\">\r\n        </div>\r\n      </div>\r\n      <div class=\"row\">\r\n        <div class=\"col-md-6 mb-3\">\r\n          <label>Сопротивление приборов, Ом</label>\r\n          <input type=\"text\" class=\"form-control\" formControlName=\"resistance\">\r\n        </div>\r\n        <div class=\"col-md-6 mb-3\">\r\n          <label>Сечение проводников, мм\r\n            <sup>2</sup>\r\n          </label>\r\n          <ng-select [items]=\"crossConductorData\" formControlName=\"crossConductor\">\r\n          </ng-select>\r\n        </div>\r\n        <div class=\"col-md-6 mb-3\">\r\n          <label>Материал проводников</label>\r\n          <ng-select [items]=\"wireTypeData\" formControlName=\"wireType\" (ngModelChange)=\"onWireTypeChange($event)\">\r\n          </ng-select>\r\n        </div>\r\n\r\n      </div>\r\n      <hr class=\"mb-4\">\r\n    </form>\r\n  </div>\r\n</div>\r\n<div class=\"row\">\r\n  <div class=\"col\">\r\n    <h5 class=\"my-3\">Проверка по напряжению</h5>\r\n    <div class=\"row\">\r\n      <p class=\"text\"> {{ compareVoltagesResult }}</p>\r\n    </div>\r\n  </div>\r\n</div>\r\n<div class=\"row\">\r\n  <div class=\"col\">\r\n    <h5 class=\"my-3\">Проверка по допустимой нагрузке</h5>\r\n    <div class=\"row\">\r\n      <p class=\"text\"> {{ compareAllowedLoad }}</p>\r\n      <br>\r\n      <button class=\"btn btn-primary btn-block btm-sm\" (click)=\"calculateSecondaryLoad()\">Проверить</button>\r\n    </div>\r\n  </div>\r\n</div>\r\n<div class=\"row\">\r\n  <div class=\"col\">\r\n    <h5 class=\"my-3\">Проверка коэффициента трансформации</h5>\r\n    <div class=\"row\">\r\n      <p class=\"text\"> {{ compareTransformCoef }}</p>\r\n      <br>\r\n      <button class=\"btn btn-primary btn-block btm-sm\" (click)=\"calculateTransformCorf()\">Проверить</button>\r\n    </div>\r\n  </div>\r\n</div>\r\n<div class=\"row\">\r\n    <div class=\"col\">\r\n      <h5 class=\"my-3\">Проверка ТТ по условиям термической и динамической стойкости</h5>\r\n      <div class=\"row\">\r\n        <p class=\"text\"> {{ compareTransformsShit }}</p>\r\n        <br>\r\n        <button class=\"btn btn-primary btn-block btm-sm\" (click)=\"checkTransformCoefs()\">Проверить</button>\r\n      </div>\r\n    </div>\r\n  </div>"
 
 /***/ }),
 
@@ -309,17 +313,184 @@ var AmperageTransformerComponent = /** @class */ (function () {
             }
         ];
         this.ratedSecondaryVoltageData = [3, 5, 10, 15, 20, 25, 30, 40, 50, 60, 75, 100];
-        this.primaryAmperageData = [1, 5, 10, 15, 20, 30, 40, 50, 75, 80, 100, 150, 200, 300, 400, 500,
-            600, 750, 800, 1000, 1200, 1500, 1600, 2000, 3000, 4000, 5000,
-            6000, 8000, 10000, 12000, 14000, 16000, 18000, 20000, 25000,
-            28000, 30000, 32000, 35000, 40000];
+        this.primaryAmperageData = [
+            {
+                value: 1,
+                maxValue: 1
+            },
+            {
+                value: 5,
+                maxValue: 5
+            },
+            {
+                value: 10,
+                maxValue: 10
+            },
+            {
+                value: 15,
+                maxValue: 16
+            },
+            {
+                value: 20,
+                maxValue: 20
+            },
+            {
+                value: 30,
+                maxValue: 32
+            },
+            {
+                value: 40,
+                maxValue: 40
+            },
+            {
+                value: 50,
+                maxValue: 50
+            },
+            {
+                value: 75,
+                maxValue: 80
+            },
+            {
+                value: 80,
+                maxValue: 80
+            },
+            {
+                value: 100,
+                maxValue: 100
+            },
+            {
+                value: 150,
+                maxValue: 160
+            },
+            {
+                value: 200,
+                maxValue: 200
+            },
+            {
+                value: 300,
+                maxValue: 320
+            },
+            {
+                value: 400,
+                maxValue: 400
+            },
+            {
+                value: 500,
+                maxValue: 500
+            },
+            {
+                value: 600,
+                maxValue: 630
+            },
+            {
+                value: 750,
+                maxValue: 800
+            },
+            {
+                value: 800,
+                maxValue: 800
+            },
+            {
+                value: 1000,
+                maxValue: 1000
+            },
+            {
+                value: 1200,
+                maxValue: 1250
+            },
+            {
+                value: 1500,
+                maxValue: 1600
+            },
+            {
+                value: 1600,
+                maxValue: 1600
+            },
+            {
+                value: 2000,
+                maxValue: 2000
+            },
+            {
+                value: 3000,
+                maxValue: 3200
+            },
+            {
+                value: 4000,
+                maxValue: 4000
+            },
+            {
+                value: 5000,
+                maxValue: 5000
+            },
+            {
+                value: 6000,
+                maxValue: 6300
+            },
+            {
+                value: 8000,
+                maxValue: 8000
+            },
+            {
+                value: 10000,
+                maxValue: 10000
+            },
+            {
+                value: 12000,
+                maxValue: 12000
+            },
+            {
+                value: 14000,
+                maxValue: 14000
+            },
+            {
+                value: 16000,
+                maxValue: 16000
+            },
+            {
+                value: 18000,
+                maxValue: 18000
+            },
+            {
+                value: 20000,
+                maxValue: 20000
+            },
+            {
+                value: 25000,
+                maxValue: 25000
+            },
+            {
+                value: 28000,
+                maxValue: 28000
+            },
+            {
+                value: 30000,
+                maxValue: 30000
+            },
+            {
+                value: 32000,
+                maxValue: 32000
+            },
+            {
+                value: 35000,
+                maxValue: 35000
+            },
+            {
+                value: 40000,
+                maxValue: 40000
+            },
+        ];
         this.secondaryAmperageData = [1, 5];
         this.cosinData = [0.8, 1];
         this.wireTypeData = ['Медь', 'Алюминий'];
+        this.lengthCalcData = ['Полная звезда', 'Неполная звезда', 'Включение в одну фазу'];
         this.accountWinding = ['0.2s', '0.5s'];
         this.measureWinding = [0.1, 0.2, 0.5, 1, 3, 5];
         this.defenceWinding = ['5P', '10P'];
         this.transformCoef = '';
+        this.compareVoltagesResult = '';
+        this.compareAllowedLoad = '';
+        this.compareTransformCoef = '';
+        this.compareTransformsShit = '';
         this.form = fb.group({
             ratedVoltage: [''],
             secondaryVoltage: [''],
@@ -336,9 +507,11 @@ var AmperageTransformerComponent = /** @class */ (function () {
             termicAmperageTime: [''],
             cosin: [''],
             lineLength: [''],
+            lengthCalc: [''],
             resistance: [''],
             wireType: [''],
-            crossConductor: ['']
+            crossConductor: [''],
+            additionalResistance: ['']
         });
         this._netParamsForm = netParamsForm;
     }
@@ -349,16 +522,96 @@ var AmperageTransformerComponent = /** @class */ (function () {
         if (value === 'Алюминий') {
             this.crossConductorData = [4, 6, 10];
         }
+        this.calculateSecondaryLoad();
     };
     AmperageTransformerComponent.prototype.calculateTransformCoef = function () {
         if (this.form.valid) {
             this.transformCoef = "" + this.form.value.primaryAmperage / this.form.value.secondaryAmperage;
+            sessionStorage.setItem("secondaryAmperage", this.form.value.secondaryAmperage);
         }
     };
     AmperageTransformerComponent.prototype.compareVoltages = function (value) {
         var voltage = sessionStorage.getItem("maxPotential");
         if (this.form.value.ratedVoltage < voltage) {
-            alert('Иди нахуй');
+            this.compareVoltagesResult = 'Трансформатор тока не соответствует номинальному напряжению сети';
+        }
+        else {
+            this.compareVoltagesResult = 'Трансформатор тока соответствует номинальному напряжению сети';
+        }
+    };
+    AmperageTransformerComponent.prototype.calculateSecondaryLoad = function () {
+        var secondaryAmperage = Number.parseInt(sessionStorage.getItem("secondaryAmperage"));
+        var gamma = this.form.value.wireType === 'Алюминий' ? 34.5 : 57;
+        var resistanceProviders = this.form.value.lineLength / (gamma * this.form.value.crossConductor);
+        var additionalResist = Number(this.form.value.additionalResistance);
+        var load = secondaryAmperage * secondaryAmperage * (Number.parseFloat(this.form.value.resistance) + resistanceProviders + 0.05);
+        if (this.form.value.secondaryVoltage >= load + additionalResist) {
+            this.compareAllowedLoad = 'Загрузка вторичной обмотки ТТ соответствует номинальным параметрам загрузки';
+        }
+        else {
+            this.compareAllowedLoad = 'Загрузка вторичной обмотки ТТ не соответствует номинальным параметрам загрузки';
+        }
+        if (load + additionalResist < 0.25 * this.form.value.secondaryVoltage) {
+            this.compareAllowedLoad = 'Нужно добавить резистор';
+        }
+    };
+    AmperageTransformerComponent.prototype.calculateLength = function (value) {
+        if (value === 'Полная звезда') {
+            this.form.value.lineLength = this.form.value.lineLength;
+        }
+        if (value === 'Неполная звезда') {
+            this.form.value.lineLength = this.form.value.lineLength * Math.sqrt(3);
+        }
+        if (value === 'Включение в одну фазу') {
+            this.form.value.lineLength = this.form.value.lineLength * 2;
+        }
+    };
+    AmperageTransformerComponent.prototype.setMaxWorkFirstAmperage = function (value) {
+        var _this = this;
+        this.primaryAmperageData.map(function (config) {
+            if (config.value === value) {
+                _this.maxWorkAmperage = config.maxValue;
+                _this.maxAmperage = "" + config.value;
+                sessionStorage.setItem("maxAmperage", _this.maxWorkAmperage);
+            }
+        });
+    };
+    AmperageTransformerComponent.prototype.calculateTransformCorf = function () {
+        var maxAmperage = Number.parseFloat(sessionStorage.getItem("maxAmperage"));
+        var netMaxAmperage = Number.parseFloat(sessionStorage.getItem("netMaxAmperage"));
+        var netMinAmperage = Number.parseFloat(sessionStorage.getItem("netMinAmperage"));
+        var flag1 = netMaxAmperage / Number.parseFloat(this.transformCoef) > Number.parseFloat(this.form.value.secondaryAmperage) * 0.4;
+        var flag2 = netMinAmperage / Number.parseFloat(this.transformCoef) > Number.parseFloat(this.form.value.secondaryAmperage) * 0.05;
+        if (maxAmperage > netMaxAmperage && flag1 && flag2) {
+            this.compareTransformCoef = 'Номинальный первичный ток соответствует наибольшему рабочему току';
+        }
+        else {
+            if (!flag1 || !flag2) {
+                this.compareTransformCoef = 'Коэфициент трансформации завышен. Выберите меньший первичный ток';
+            }
+            else {
+                this.compareTransformCoef = 'Необходимо повысить номинальный первичный ток';
+            }
+        }
+    };
+    AmperageTransformerComponent.prototype.checkTransformCoefs = function () {
+        var flag1 = this.form.value.dynamicAmperage >= Number.parseFloat(sessionStorage.getItem("shockAmperage"));
+        var flag2 = this.form.value.termicAmperage * this.form.value.termicAmperage * this.form.value.termicAmperageTime >= Number.parseFloat(sessionStorage.getItem("kzAmperageImpulse"));
+        if (flag1 && flag2) {
+            this.compareTransformsShit = 'Трансформатор тока проходит по условия термической и динамической стойкости';
+        }
+        else {
+            if (!flag1 && flag2) {
+                this.compareTransformsShit = 'Трансформаторв тока не проходит по условиям динамической стойкости';
+            }
+            else {
+                if (flag1 && !flag2) {
+                    this.compareTransformsShit = 'Трансформатор тока не проходит по условия термической стойкости';
+                }
+                else {
+                    this.compareTransformsShit = 'Трансформатор тока не проходит по условия термической и динамической стойкости';
+                }
+            }
         }
     };
     AmperageTransformerComponent.prototype.ngOnInit = function () {
@@ -399,7 +652,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col\">\r\n    <h4 class=\"mb-3\">Параметры сети</h4>\r\n    <form class=\"needs-validation\" novalidate=\"\" [formGroup]=\"form\">\r\n      <div class=\"row\">\r\n        <div class=\"col-md-6 mb-3\">\r\n          <label>Номинальное напряжение, кВ</label>\r\n          <ng-select [items]=\"ratedVoltageData\" bindValue=\"value\" bindLabel=\"value\" formControlName=\"potential\" (ngModelChange)=\"changeMaxPotential($event)\" >\r\n            </ng-select>\r\n        </div>\r\n        <div class=\"col-md-6 mb-3\">\r\n          <label>Рабочее напряжение, кВ</label>\r\n          <input type=\"text\" class=\"form-control\" formControlName=\"workPotential\" (ngModelChange)=\"checkPotential()\">\r\n          <div class=\"invalid-feedback\">\r\n            Valid last name is required.\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"row\">\r\n        <div class=\"col-md-6 mb-3\">\r\n          <label>Минимальная мощность, МВт</label>\r\n          <input type=\"text\" class=\"form-control\" formControlName=\"minPower\" (ngModelChange)=\"calculateMinAmperage()\">\r\n          <div class=\"invalid-feedback\">\r\n            Valid first name is required.\r\n          </div>\r\n        </div>\r\n        <div class=\"col-md-6 mb-3\">\r\n            <label>Максмальная мощность, МВт</label>\r\n            <input type=\"text\" class=\"form-control\" formControlName=\"maxPower\" (ngModelChange)=\"calculateMaxAmperage()\">\r\n            <div class=\"invalid-feedback\">\r\n              Valid first name is required.\r\n            </div>\r\n          </div>\r\n      </div>\r\n      <div class=\"row\">\r\n          <div class=\"col-md-6 mb-3\">\r\n            <label>Минимальный ток, А</label>\r\n            <input type=\"text\"  disabled class=\"form-control\" [value]=\"minAmperage\">\r\n            \r\n          </div>\r\n          <div class=\"col-md-6 mb-3\">\r\n              <label>Максмальный ток, А</label>\r\n              <input type=\"text\" disabled class=\"form-control\" [value]=\"maxAmperage\">\r\n              \r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"row\">\r\n            <div class=\"col-md-6 mb-3\">\r\n              <label>Ток трёхфазного КЗ, кА</label>\r\n              <input type=\"text\" class=\"form-control\" formControlName=\"kzAmperage\">\r\n            </div>\r\n            <div class=\"col-md-6 mb-3\">\r\n                <label>Расчётное время теплового импульса, с</label>\r\n                <input type=\"text\" class=\"form-control\" formControlName=\"heatImpulseTime\">\r\n              </div>\r\n          </div>\r\n      \r\n      <hr class=\"mb-4\">\r\n    </form>\r\n  </div>\r\n</div>"
+module.exports = "<div class=\"row\">\r\n  <div class=\"col\">\r\n    <h4 class=\"mb-3\">Параметры сети</h4>\r\n    <form class=\"needs-validation\" novalidate=\"\" [formGroup]=\"form\">\r\n      <div class=\"row\">\r\n        <div class=\"col-md-6 mb-3\">\r\n          <label>Номинальное напряжение, кВ</label>\r\n          <ng-select [items]=\"ratedVoltageData\" bindValue=\"value\" bindLabel=\"value\" formControlName=\"potential\" (ngModelChange)=\"changeMaxPotential($event)\">\r\n          </ng-select>\r\n        </div>\r\n        <div class=\"col-md-6 mb-3\">\r\n          <label>Рабочее напряжение, кВ</label>\r\n          <input type=\"text\" class=\"form-control\" formControlName=\"workPotential\" (ngModelChange)=\"checkPotential()\">\r\n          <div class=\"invalid-feedback\">\r\n            Valid last name is required.\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"row\">\r\n        <div class=\"col-md-6 mb-3\" *ngIf=\"isVisibleFields\">\r\n          <label>Минимальная мощность, МВт</label>\r\n          <input type=\"text\" class=\"form-control\" formControlName=\"minPower\" (ngModelChange)=\"calculateMinAmperage()\">\r\n          <div class=\"invalid-feedback\">\r\n            Valid first name is required.\r\n          </div>\r\n        </div>\r\n        <div class=\"col-md-6 mb-3\" *ngIf=\"isVisibleFields\">\r\n          <label>Максмальная мощность, МВт</label>\r\n          <input type=\"text\" class=\"form-control\" formControlName=\"maxPower\" (ngModelChange)=\"calculateMaxAmperage()\">\r\n          <div class=\"invalid-feedback\">\r\n            Valid first name is required.\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"row\">\r\n        <div class=\"col-md-6 mb-3\" *ngIf=\"isVisibleFields\">\r\n          <label>Минимальный ток, А</label>\r\n          <input type=\"text\" disabled class=\"form-control\" [value]=\"minAmperage\">\r\n\r\n        </div>\r\n        <div class=\"col-md-6 mb-3\" *ngIf=\"isVisibleFields\">\r\n          <label>Максмальный ток, А</label>\r\n          <input type=\"text\" class=\"form-control disabled\" [value]=\"maxAmperage\">\r\n\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"row\">\r\n        <div class=\"col-md-6 mb-3\" *ngIf=\"isVisibleFields\">\r\n          <label>Ток трёхфазного КЗ, кА</label>\r\n          <input type=\"text\" class=\"form-control\" formControlName=\"kzAmperage\" (ngModelChange)=\"onKZEntered($event)\">\r\n        </div>\r\n        <div class=\"col-md-6 mb-3\" *ngIf=\"isVisibleFields\">\r\n          <label>Расчётное время теплового импульса, с</label>\r\n          <input type=\"text\" class=\"form-control\" formControlName=\"heatImpulseTime\" (ngModelChange)=\"onHeatImpulseTimeEntered($event)\">\r\n        </div>\r\n      </div>\r\n      <div class=\"row\">\r\n        <div class=\"col-md-6 mb-3\" *ngIf=\"isVisibleFields\">\r\n          <label>Ударный ток, кА</label>\r\n          <input type=\"text\" class=\"form-control\"  [value]=\"shockAmperage\">\r\n        </div>\r\n        <div class=\"col-md-6 mb-3\" *ngIf=\"isVisibleFields\">\r\n          <label>Импульс тока КЗ, А<sup>2</sup>*сек</label>\r\n          <input type=\"text\" class=\"form-control\" [value]=\"kzAmperageImpulse\">\r\n        </div>\r\n      </div>\r\n\r\n      <hr class=\"mb-4\">\r\n    </form>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -432,7 +685,10 @@ var NetParamsFormComponent = /** @class */ (function () {
     function NetParamsFormComponent(fb, requestService) {
         this.fb = fb;
         this.requestService = requestService;
+        this.isVisibleFields = false;
         this.maxPotential = '';
+        this.shockAmperage = '';
+        this.kzAmperageImpulse = '';
         this.ratedVoltageData = [
             {
                 value: 0.66,
@@ -527,11 +783,13 @@ var NetParamsFormComponent = /** @class */ (function () {
     NetParamsFormComponent.prototype.calculateMinAmperage = function () {
         if (this.form.valid) {
             this.minAmperage = "" + (this.form.value.minPower * 1000 / (Math.sqrt(3) * this.form.value.potential)).toFixed(2);
+            sessionStorage.setItem("netMinAmperage", this.minAmperage);
         }
     };
     NetParamsFormComponent.prototype.calculateMaxAmperage = function () {
         if (this.form.valid) {
             this.maxAmperage = "" + (this.form.value.maxPower * 1000 / (Math.sqrt(3) * this.form.value.potential)).toFixed(2);
+            sessionStorage.setItem("netMaxAmperage", this.maxAmperage);
         }
     };
     NetParamsFormComponent.prototype.checkPotential = function () {
@@ -553,8 +811,20 @@ var NetParamsFormComponent = /** @class */ (function () {
             }
         });
     };
+    NetParamsFormComponent.prototype.onKZEntered = function (value) {
+        this.shockAmperage = (this.form.value.kzAmperage * 1.8 * Math.sqrt(2)).toFixed(2);
+        sessionStorage.setItem("shockAmperage", this.shockAmperage);
+    };
+    NetParamsFormComponent.prototype.onHeatImpulseTimeEntered = function (value) {
+        this.kzAmperageImpulse = (this.form.value.kzAmperage * this.form.value.kzAmperage * this.form.value.heatImpulseTime).toFixed(2);
+        sessionStorage.setItem("kzAmperageImpulse", this.kzAmperageImpulse);
+    };
     NetParamsFormComponent.prototype.ngOnInit = function () {
     };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], NetParamsFormComponent.prototype, "isVisibleFields", void 0);
     NetParamsFormComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-net-params-form',
@@ -627,7 +897,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n    <div class=\"col\">\r\n        <h4 class=\"mb-3\">Параметры ТН</h4>\r\n        <form class=\"needs-validation\" novalidate=\"\" [formGroup]=\"form\">\r\n            <div class=\"row\">\r\n                <div class=\"col-md-6 mb-3\">\r\n                    <label>Номинальное напряжение, кВ</label>\r\n                    <ng-select [items]=\"ratedVoltageData\" bindValue=\"value\" bindLabel=\"value\" formControlName=\"ratedVoltage\">\r\n                    </ng-select>\r\n\r\n                </div>\r\n                <div class=\"col-md-6 mb-3\">\r\n                    <label>Тип нагрузки</label>\r\n                    <ng-select [items]=\"loadTypeData\" formControlName=\"loadType\" (ngModelChange)=\"onLoadTypeChange($event)\">\r\n                    </ng-select>\r\n\r\n                </div>\r\n            </div>\r\n            <div class=\"row\">\r\n                <div class=\"col-md-6 mb-3\">\r\n                    <label>Номинальная мощность вторичной нагрузки, МВт</label>\r\n                    <ng-select [items]=\"ratedPowerData\" formControlName=\"transformerAccuracy\">\r\n                    </ng-select>\r\n                </div>\r\n                <div class=\"col-md-6 mb-3\">\r\n                    <label>Класс точности трансформатора</label>\r\n                    <ng-select [items]=\"accuracyClassData\" formControlName=\"transformerAccuracy\">\r\n                    </ng-select>\r\n                </div>\r\n            </div>\r\n            <div class=\"row\">\r\n                <div class=\"col-sm\">\r\n                    <label>Обмотка учета</label>\r\n                    <ng-select [items]=\"accountWinding\" formControlName=\"firstWinding\" (ngModelChange)=\"onWindingChange($event)\">\r\n                    </ng-select>\r\n                </div>\r\n                <div class=\"col-sm\">\r\n                    <label>Обмотка измерения</label>\r\n                    <ng-select [items]=\"measureWinding\" formControlName=\"secondWinding\" (ngModelChange)=\"onWindingChange($event)\">\r\n                    </ng-select>\r\n                </div>\r\n                <div class=\"col-sm\">\r\n                    <label>Обмотка защиты</label>\r\n                    <ng-select [items]=\"defenceWinding\" formControlName=\"thirdWinding\" (ngModelChange)=\"onWindingChange($event)\">\r\n                    </ng-select>\r\n                </div>\r\n            </div>\r\n            <h4 class=\"my-3\">Параметры вторичной сети</h4>\r\n            <div class=\"row\">\r\n                <div class=\"col-md-6 mb-3\">\r\n                    <label>Суммарное сопротивление приборов вторичной обмотки, Ом</label>\r\n                    <input type=\"text\" class=\"form-control\" formControlName=\"resistanceSum\">\r\n                </div>\r\n                <div class=\"col-md-6 mb-3\">\r\n                    <label>Сечении линии, мм<sup>2</sup></label>\r\n                    <ng-select [items]=\"lineCrossData\" formControlName=\"lineCross\">\r\n                    </ng-select>\r\n                </div>\r\n            </div>\r\n            <div class=\"row\">\r\n                <div class=\"col-md-6 mb-3\">\r\n                    <label>Длина линии, м</label>\r\n                    <input type=\"text\" class=\"form-control\" formControlName=\"lineLength\">\r\n                </div>\r\n                <div class=\"col-md-6 mb-3\">\r\n                    <label>Максимальный класс точности подключённого прибора</label>\r\n                    <input type=\"text\" class=\"form-control\" formControlName=\"maxAccuracy\">\r\n                </div>\r\n            </div>\r\n            <hr class=\"mb-4\">\r\n            <button class=\"btn btn-primary btn-lg btn-block\" type=\"submit\">Рассчитать</button>\r\n        </form>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"row\">\r\n    <div class=\"col\">\r\n        <h4 class=\"mb-3\">Параметры ТН</h4>\r\n        <form class=\"needs-validation\" novalidate=\"\" [formGroup]=\"form\">\r\n            <div class=\"row\">\r\n                <div class=\"col-md-6 mb-3\">\r\n                    <label>Номинальное напряжение, кВ</label>\r\n                    <ng-select [items]=\"ratedVoltageData\" bindValue=\"value\" bindLabel=\"value\" formControlName=\"ratedVoltage\">\r\n                    </ng-select>\r\n                </div>\r\n                <div class=\"col-md-6 mb-3\">\r\n                    <label>Тип нагрузки</label>\r\n                    <ng-select [items]=\"loadTypeData\" formControlName=\"loadType\" (ngModelChange)=\"onLoadTypeChange($event)\">\r\n                    </ng-select>\r\n                </div>\r\n            </div>\r\n            <div class=\"row\">\r\n                <div class=\"col-md-6 mb-3\">\r\n                    <label>Номинальная мощность вторичной нагрузки, МВт</label>\r\n                    <ng-select [items]=\"ratedPowerData\" formControlName=\"transformerAccuracy\">\r\n                    </ng-select>\r\n                </div>\r\n                <div class=\"col-md-6 mb-3\">\r\n                    <label>Класс точности трансформатора</label>\r\n                    <ng-select [items]=\"accuracyClassData\" formControlName=\"transformerAccuracy\">\r\n                    </ng-select>\r\n                </div>\r\n            </div>\r\n            <div class=\"row\">\r\n                <div class=\"col-sm\">\r\n                    <label>Обмотка учета</label>\r\n                    <ng-select [items]=\"accountWinding\" formControlName=\"firstWinding\" (ngModelChange)=\"onWindingChange($event)\">\r\n                    </ng-select>\r\n                </div>\r\n                <div class=\"col-sm\">\r\n                    <label>Обмотка измерения</label>\r\n                    <ng-select [items]=\"measureWinding\" formControlName=\"secondWinding\" (ngModelChange)=\"onWindingChange($event)\">\r\n                    </ng-select>\r\n                </div>\r\n                <div class=\"col-sm\">\r\n                    <label>Обмотка защиты</label>\r\n                    <ng-select [items]=\"defenceWinding\" formControlName=\"thirdWinding\" (ngModelChange)=\"onWindingChange($event)\">\r\n                    </ng-select>\r\n                </div>\r\n            </div>\r\n            <h4 class=\"my-3\">Параметры вторичной сети</h4>\r\n            <div class=\"row\">\r\n                <div class=\"col-md-6 mb-3\">\r\n                    <label>Суммарное сопротивление приборов вторичной обмотки, Ом</label>\r\n                    <input type=\"text\" class=\"form-control\" formControlName=\"resistanceSum\">\r\n                </div>\r\n                <div class=\"col-md-6 mb-3\">\r\n                    <label>Сечении линии, мм<sup>2</sup></label>\r\n                    <ng-select [items]=\"lineCrossData\" formControlName=\"lineCross\">\r\n                    </ng-select>\r\n                </div>\r\n            </div>\r\n            <div class=\"row\">\r\n                <div class=\"col-md-6 mb-3\">\r\n                    <label>Длина линии, м</label>\r\n                    <input type=\"text\" class=\"form-control\" formControlName=\"lineLength\">\r\n                </div>\r\n                <div class=\"col-md-6 mb-3\">\r\n                    <label>Максимальный класс точности подключённого прибора</label>\r\n                    <input type=\"text\" class=\"form-control\" formControlName=\"maxAccuracy\">\r\n                </div>\r\n            </div>\r\n            <hr class=\"mb-4\">\r\n            <button class=\"btn btn-primary btn-lg btn-block\" type=\"submit\">Рассчитать</button>\r\n        </form>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -753,6 +1023,8 @@ var VoltageTransformerFormComponent = /** @class */ (function () {
             this.ratedPowerData = [10, 15, 20, 25, 30, 45, 50, 70, 100, 150, 200,
                 300, 400, 500, 600, 800, 1000, 12000];
         }
+    };
+    VoltageTransformerFormComponent.prototype.calculateTransformCorf = function () {
     };
     VoltageTransformerFormComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
